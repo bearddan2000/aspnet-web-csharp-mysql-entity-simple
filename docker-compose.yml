@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  webapp:
+    build:
+      context: .
+    ports:
+      - "80:80"
+    volumes:
+      - ./pools:/etc/mono/pools
+    links:
+      - "maria:maria"
+
+  maria:
+    image: mariadb:latest
+    volumes:
+      - ./maria/data_dump:/var/lib/mysql
+      - ./maria/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin
+      - MYSQL_USER=maria
+      - MYSQL_PASSWORD=pass
