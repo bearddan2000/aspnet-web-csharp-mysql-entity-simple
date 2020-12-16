@@ -28,9 +28,9 @@ WORKDIR /var/www/sample-app
 
 RUN cat main.tar.gz-part-* > main.tar.gz \
   && tar -xf main.tar.gz \
-  && chown -R www-data:www-data main \
-  && chmod -R +x main \
-  && cp -rf main/CSharpMySqlAsp/CSharpMySqlAsp/* .
+  && chown -R www-data:www-data CSharpMySqlAsp \
+  && chmod -R +x CSharpMySqlAsp \
+  && cp -rf CSharpMySqlAsp/CSharpMySqlAsp/* .
 
 EXPOSE 80
 
